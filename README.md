@@ -2,7 +2,7 @@
 
 一个结合 TIPI-J 人格参数、PyTorch 玩家意图识别与显式会话状态的 NPC 交互原型，支持本地运行与训练评测结果查看。
 
-**作者：高信哲 / Xinzhe Gao** · [个人主页](https://xinzhe.dev) · [GitHub](https://github.com/XinzheGao)
+**作者：高信哲 / Xinzhe Gao**
 
 仓库包含源码、界面截图、已训练的小模型和评测报告。当前演示在本地浏览器运行，尚未部署在线试玩。
 
@@ -131,5 +131,4 @@ docs/images/npc-demo.png 界面截图
 ```
 
 ## 实现与资料来源
-
-TIPI-J 的五维预设参考作者 JSSST 稿件中的角色参数表；界面十项分值为演示性重建，不是原始研究问卷回答。训练流程参考 [PyTorch 官方优化教程](https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html)。
+训练流程参考 [PyTorch 官方优化教程](https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html)。
