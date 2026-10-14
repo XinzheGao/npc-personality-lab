@@ -1,0 +1,878 @@
+{
+  "seed": 42,
+  "torch_version": "2.14.1",
+  "device": "cpu",
+  "best_epoch": 46,
+  "data_source": "小规模自建演示语料；不是论文原始数据",
+  "split_policy": "预先固定的不同句子；词表与IDF仅来自训练集，验证损失选模型，测试集不参与调参",
+  "limitations": "极小、同领域、自建语料，仅演示训练流程。相近词汇跨集合存在，不能证明真实游戏泛化；softmax分数未经校准；人格回应由规则控制。",
+  "counts": {
+    "train": 72,
+    "validation": 18,
+    "test": 24
+  },
+  "vocab_size": 487,
+  "test_accuracy": 1.0,
+  "macro_f1": 1.0,
+  "labels": [
+    "打招呼",
+    "寻求任务",
+    "交易购买",
+    "询问背景",
+    "威胁冲突",
+    "告别"
+  ],
+  "confusion_matrix": [
+    [
+      4,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4
+    ]
+  ],
+  "per_class": [
+    {
+      "label": "打招呼",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "寻求任务",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "交易购买",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "询问背景",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "威胁冲突",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "告别",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  ],
+  "test_cases": [
+    {
+      "text": "你好旅行者",
+      "expected": "打招呼",
+      "predicted": "打招呼",
+      "score": 0.9936,
+      "correct": true
+    },
+    {
+      "text": "早上好朋友",
+      "expected": "打招呼",
+      "predicted": "打招呼",
+      "score": 0.9995,
+      "correct": true
+    },
+    {
+      "text": "嗨初次见面",
+      "expected": "打招呼",
+      "predicted": "打招呼",
+      "score": 0.9465,
+      "correct": true
+    },
+    {
+      "text": "好久不见你还好吗",
+      "expected": "打招呼",
+      "predicted": "打招呼",
+      "score": 0.999,
+      "correct": true
+    },
+    {
+      "text": "有没有委托需要帮忙",
+      "expected": "寻求任务",
+      "predicted": "寻求任务",
+      "score": 0.9993,
+      "correct": true
+    },
+    {
+      "text": "请给我任务做",
+      "expected": "寻求任务",
+      "predicted": "寻求任务",
+      "score": 0.9991,
+      "correct": true
+    },
+    {
+      "text": "我想帮助村里的人",
+      "expected": "寻求任务",
+      "predicted": "寻求任务",
+      "score": 0.8725,
+      "correct": true
+    },
+    {
+      "text": "能安排个找东西的任务吗",
+      "expected": "寻求任务",
+      "predicted": "寻求任务",
+      "score": 0.9978,
+      "correct": true
+    },
+    {
+      "text": "我要买一瓶药水",
+      "expected": "交易购买",
+      "predicted": "交易购买",
+      "score": 0.9953,
+      "correct": true
+    },
+    {
+      "text": "这件装备多少钱",
+      "expected": "交易购买",
+      "predicted": "交易购买",
+      "score": 0.9997,
+      "correct": true
+    },
+    {
+      "text": "我想出售武器",
+      "expected": "交易购买",
+      "predicted": "交易购买",
+      "score": 0.9957,
+      "correct": true
+    },
+    {
+      "text": "商店能交易材料吗",
+      "expected": "交易购买",
+      "predicted": "交易购买",
+      "score": 0.9971,
+      "correct": true
+    },
+    {
+      "text": "这座古塔有什么故事",
+      "expected": "询问背景",
+      "predicted": "询问背景",
+      "score": 0.9989,
+      "correct": true
+    },
+    {
+      "text": "介绍一下村庄的历史",
+      "expected": "询问背景",
+      "predicted": "询问背景",
+      "score": 0.9978,
+      "correct": true
+    },
+    {
+      "text": "告诉我森林的传说",
+      "expected": "询问背景",
+      "predicted": "询问背景",
+      "score": 0.998,
+      "correct": true
+    },
+    {
+      "text": "你过去经历过什么",
+      "expected": "询问背景",
+      "predicted": "询问背景",
+      "score": 0.9877,
+      "correct": true
+    },
+    {
+      "text": "交出钱来否则打你",
+      "expected": "威胁冲突",
+      "predicted": "威胁冲突",
+      "score": 0.9865,
+      "correct": true
+    },
+    {
+      "text": "我要抢走你的装备",
+      "expected": "威胁冲突",
+      "predicted": "威胁冲突",
+      "score": 0.8901,
+      "correct": true
+    },
+    {
+      "text": "我会毁掉这里",
+      "expected": "威胁冲突",
+      "predicted": "威胁冲突",
+      "score": 0.9986,
+      "correct": true
+    },
+    {
+      "text": "别逼我攻击你",
+      "expected": "威胁冲突",
+      "predicted": "威胁冲突",
+      "score": 0.999,
+      "correct": true
+    },
+    {
+      "text": "再见我先离开",
+      "expected": "告别",
+      "predicted": "告别",
+      "score": 0.9997,
+      "correct": true
+    },
+    {
+      "text": "拜拜下次聊",
+      "expected": "告别",
+      "predicted": "告别",
+      "score": 0.9992,
+      "correct": true
+    },
+    {
+      "text": "告辞保重",
+      "expected": "告别",
+      "predicted": "告别",
+      "score": 0.9979,
+      "correct": true
+    },
+    {
+      "text": "我要走了回头见",
+      "expected": "告别",
+      "predicted": "告别",
+      "score": 0.9998,
+      "correct": true
+    }
+  ],
+  "ood_probes": [
+    {
+      "text": "今天天气如何",
+      "predicted": "告别",
+      "score": 0.9913
+    },
+    {
+      "text": "我不想打你",
+      "predicted": "威胁冲突",
+      "score": 0.9533
+    },
+    {
+      "text": "没有任务吗我想买药水",
+      "predicted": "交易购买",
+      "score": 0.9298
+    },
+    {
+      "text": "如何安装操作系统",
+      "predicted": "交易购买",
+      "score": 0.7078
+    },
+    {
+      "text": "救命我受伤了",
+      "predicted": "威胁冲突",
+      "score": 0.6401
+    },
+    {
+      "text": "别走再聊一会",
+      "predicted": "告别",
+      "score": 0.9732
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.756362,
+      "train_accuracy": 0.458333,
+      "validation_loss": 1.761867,
+      "validation_accuracy": 0.444444
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.683657,
+      "train_accuracy": 0.819444,
+      "validation_loss": 1.690069,
+      "validation_accuracy": 0.833333
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.548748,
+      "train_accuracy": 1.0,
+      "validation_loss": 1.563234,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.346998,
+      "train_accuracy": 1.0,
+      "validation_loss": 1.37467,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.089025,
+      "train_accuracy": 1.0,
+      "validation_loss": 1.132416,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.799157,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.864933,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.523045,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.606539,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.305383,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.390249,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.165655,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.243249,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.087126,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.157689,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.047043,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.110101,
+      "validation_accuracy": 1.0
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.027558,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.085278,
+      "validation_accuracy": 1.0
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.017575,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.071773,
+      "validation_accuracy": 1.0
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.012199,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.064157,
+      "validation_accuracy": 1.0
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.009036,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.060724,
+      "validation_accuracy": 1.0
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.007119,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.057817,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.005868,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.056185,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.005015,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055358,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.004396,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054368,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.003928,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.053556,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.003561,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.052746,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.003265,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051813,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.003028,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051416,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.002828,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.050884,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.002651,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.050433,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.002499,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.049833,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.00236,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.049068,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.002242,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048465,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.002131,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048021,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.002027,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.047924,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 31,
+      "train_loss": 0.001933,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.047887,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 32,
+      "train_loss": 0.001842,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048083,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 33,
+      "train_loss": 0.001757,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048384,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 34,
+      "train_loss": 0.00168,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048707,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 35,
+      "train_loss": 0.001611,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048845,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 36,
+      "train_loss": 0.001549,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.049069,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 37,
+      "train_loss": 0.001487,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.049202,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 38,
+      "train_loss": 0.001431,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.049023,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 39,
+      "train_loss": 0.001379,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048809,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 40,
+      "train_loss": 0.001331,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048622,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 41,
+      "train_loss": 0.001284,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048614,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 42,
+      "train_loss": 0.001241,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048775,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 43,
+      "train_loss": 0.001198,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048621,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 44,
+      "train_loss": 0.001157,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048327,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 45,
+      "train_loss": 0.001116,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.047854,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 46,
+      "train_loss": 0.001078,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.047532,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 47,
+      "train_loss": 0.001039,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.048527,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 48,
+      "train_loss": 0.001005,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.050017,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 49,
+      "train_loss": 0.000973,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051037,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 50,
+      "train_loss": 0.000943,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.0515,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 51,
+      "train_loss": 0.000914,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051975,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 52,
+      "train_loss": 0.000887,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.052287,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 53,
+      "train_loss": 0.00086,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.052647,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 54,
+      "train_loss": 0.000835,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.052616,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 55,
+      "train_loss": 0.000806,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.05242,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 56,
+      "train_loss": 0.00078,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051801,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 57,
+      "train_loss": 0.000756,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051473,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 58,
+      "train_loss": 0.000733,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051557,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 59,
+      "train_loss": 0.000711,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051755,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 60,
+      "train_loss": 0.000691,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.051817,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 61,
+      "train_loss": 0.000672,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.05197,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 62,
+      "train_loss": 0.000653,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.052559,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 63,
+      "train_loss": 0.000635,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.053341,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 64,
+      "train_loss": 0.000618,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054049,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 65,
+      "train_loss": 0.000601,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054829,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 66,
+      "train_loss": 0.000584,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055196,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 67,
+      "train_loss": 0.000569,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055415,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 68,
+      "train_loss": 0.000555,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055629,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 69,
+      "train_loss": 0.000541,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055752,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 70,
+      "train_loss": 0.000527,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055935,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 71,
+      "train_loss": 0.000515,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.05596,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 72,
+      "train_loss": 0.000504,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055635,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 73,
+      "train_loss": 0.000494,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.055241,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 74,
+      "train_loss": 0.000484,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054985,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 75,
+      "train_loss": 0.000475,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054844,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 76,
+      "train_loss": 0.000466,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054907,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 77,
+      "train_loss": 0.000456,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.054896,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 78,
+      "train_loss": 0.000447,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.05537,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 79,
+      "train_loss": 0.000437,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.056075,
+      "validation_accuracy": 0.944444
+    },
+    {
+      "epoch": 80,
+      "train_loss": 0.000428,
+      "train_accuracy": 1.0,
+      "validation_loss": 0.056166,
+      "validation_accuracy": 0.944444
+    }
+  ],
+  "data_sha256": "17de79e3e91c021d0b21068351fa171b8fb5d457930445eeb222632ccd24f658"
+}
