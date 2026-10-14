@@ -82,7 +82,7 @@ python3 -m venv .venv
 | 验证 | 18 |
 | 测试 | 24 |
 
-当前小规模自建演示集的记录为 **24/24 分类正确，Accuracy 1.0，Macro-F1 1.0**。完整训练曲线、混淆矩阵和逐条预测见 [artifacts/report.json](artifacts/report.json)。语料为小规模自建演示集，可在 [data.py](data.py) 中逐条查看；它不是论文原始数据或公开基准。
+当前小规模自建演示集的记录为 **24/24 分类正确，Accuracy 1.0，Macro-F1 1.0**。完整训练曲线、混淆矩阵和逐条预测见 [artifacts/report.json](artifacts/report.json)。语料为小规模自建演示集，可在 [data.py](data.py) 中逐条查看。
 
 不同集合之间没有完全相同的句子，但存在相近词汇与表达。上述分数仅说明当前演示集的分类情况，不能外推为真实游戏中的泛化效果。报告同时保留了域外与否定表达的高分误分类，例如“今天天气如何”被识别为告别。
 
@@ -130,5 +130,6 @@ docs/research.md        两阶段研究与本原型的对应关系
 docs/images/npc-demo.png 界面截图
 ```
 
-## 实现与资料来源
+## 资料来源
+
 训练流程参考 [PyTorch 官方优化教程](https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html)。
