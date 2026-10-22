@@ -1,4 +1,5 @@
 """TIPI-J scoring and explicit rule-based persona policy; no LLM training here."""
+import math
 import torch
 from data import LABELS, LABEL_ZH
 from model import encode
@@ -14,17 +15,16 @@ PRESETS = {
 }
 
 def questions_for(scores):
-    import math
     q = [4] * 10
-    for score, (positive, reverse) in zip(scores, [(0, 5), (6, 1), (2, 7), (8, 3), (4, 9)]):
+    for score, (positive, reverse) in zip(scores, [(0, 5), (6, 1), (2, 7), (3, 8), (4, 9)]):
         q[positive] = math.ceil(score)
         q[reverse] = 8 - math.floor(score)
     return q
 
 def score_tipi(q):
-    if not isinstance(q, list) or len(q) != 10 or any(type(v) not in (int, float) or not 1 <= v <= 7 for v in q):
+    if not isinstance(q, list) or len(q) != 10 or any(type(v) not in (int, float) or not math.isfinite(v) or not 1 <= v <= 7 for v in q):
         raise ValueError('需要10个1～7之间的TIPI-J分值')
-    raw = [(q[p] + 8 - q[r]) / 2 for p, r in [(0, 5), (6, 1), (2, 7), (8, 3), (4, 9)]]
+    raw = [(q[p] + 8 - q[r]) / 2 for p, r in [(0, 5), (6, 1), (2, 7), (3, 8), (4, 9)]]
     return raw, [(v-1)/6 for v in raw]
 
 def persona_prompt(name, raw, memory):

@@ -6,3 +6,6 @@ __pycache__/
 .env.*
 *.log
 .pytest_cache/
+
+!.env.example
+runtime/

@@ -6,13 +6,16 @@ from npc import PRESETS, questions_for, respond, score_tipi
 root = Path(__file__).resolve().parent
 model, vocab, idf = load_model(root / 'artifacts/intent.pt')
 assert score_tipi([4] * 10) == ([4] * 5, [.5] * 5)
-assert score_tipi([7, 1, 7, 1, 7, 1, 7, 1, 7, 1])[0] == [7] * 5
-for invalid in ([], [0] * 10, [8] * 10, ['4'] * 10):
+assert score_tipi([7, 1, 7, 7, 7, 1, 7, 1, 1, 1])[0] == [7] * 5
+for invalid in ([], [0] * 10, [8] * 10, ['4'] * 10, [float('nan')] * 10, [True] * 10):
     try:
         score_tipi(invalid)
         raise AssertionError('invalid TIPI values were accepted')
     except ValueError:
         pass
+assert score_tipi([4,4,4,7,4,4,4,4,1,4])[0][3] == 7
+for values in PRESETS.values():
+    assert score_tipi(questions_for(values))[0] == values
 memory = {}
 aki = respond(model, vocab, idf, '有什么任务可以接', 'Aki', questions_for(PRESETS['Aki']), memory)
 bye = respond(model, vocab, idf, '再见', 'Aki', questions_for(PRESETS['Aki']), memory)
